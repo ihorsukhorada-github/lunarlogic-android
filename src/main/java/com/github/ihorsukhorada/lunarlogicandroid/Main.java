@@ -20,13 +20,11 @@ public class Main {
         return Integer.parseInt(Arrays.stream(array).boxed().map(String::valueOf).collect(Collectors.joining("")));
     }
 
-    public static void main(String[] args) {
-        if(args.length != 3) throw new IllegalArgumentException();
-
+    public static int[] solve(int[] array) {
         final int[] changesLeft = {6};
 
-        int[] numbers = Arrays.stream(args)
-                .mapToInt(Integer::parseInt).boxed()
+        int[] numbers = Arrays.stream(array)
+                .boxed()
                 .mapToInt(Integer::intValue).map(number -> {
                     if(number % 3 != 0) {
                         int[] digits = getDigitsArray(number);
@@ -46,6 +44,12 @@ public class Main {
                     return number;
                 }).toArray();
 
-        System.out.println(Arrays.toString(numbers));
+        return numbers;
+    }
+
+    public static void main(String[] args) {
+        int[] numbers = new int[] { 784, 4765, 5291 };
+
+        System.out.println(Arrays.toString(solve(numbers)));
     }
 }
